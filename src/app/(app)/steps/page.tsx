@@ -61,7 +61,6 @@ export default async function StepsPage() {
           <StepsForm
             today={today}
             initialSteps={snap?.steps ?? 0}
-            initialKcal={Number(snap?.active_kcal ?? 0)}
           />
         </div>
       </section>
