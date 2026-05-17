@@ -10,6 +10,11 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "Objectif Prime",
   description: "Suivi de perte de poids et défi entre amis",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/icon-192.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {

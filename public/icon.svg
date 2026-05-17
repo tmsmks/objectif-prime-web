@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="96" fill="#059669"/>
+  <!-- Barbell bar -->
+  <rect x="64" y="224" width="384" height="48" rx="24" fill="#ffffff" opacity="0.3"/>
+  <!-- Left weight -->
+  <rect x="32" y="152" width="80" height="192" rx="24" fill="#ffffff" opacity="0.5"/>
+  <!-- Right weight -->
+  <rect x="400" y="152" width="80" height="192" rx="24" fill="#ffffff" opacity="0.5"/>
+  <!-- Trophy cup -->
+  <path d="M192 96h128v112c0 44-28.7 80-64 80s-64-36-64-80V96z" fill="#facc15" stroke="#eab308" stroke-width="8"/>
+  <!-- Trophy left handle -->
+  <path d="M192 128c-24 0-48 16-48 48s24 48 48 48" stroke="#eab308" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <!-- Trophy right handle -->
+  <path d="M320 128c24 0 48 16 48 48s-24 48-48 48" stroke="#eab308" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <!-- Trophy base -->
+  <rect x="224" y="288" width="64" height="32" rx="8" fill="#eab308"/>
+  <rect x="200" y="320" width="112" height="24" rx="12" fill="#eab308"/>
+  <!-- Star -->
+  <path d="M256 136l14.4 28.8 32 4.8-23.2 22.4 5.6 32-28.8-15.2L227.2 224l5.6-32-23.2-22.4 32-4.8L256 136z" fill="#ffffff"/>
+</svg>
