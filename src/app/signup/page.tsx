@@ -24,7 +24,6 @@ export default function SignupPage() {
               required
               minLength={3}
               maxLength={20}
-              pattern="[a-z0-9_]+"
               autoComplete="username"
               className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2 text-sm focus:border-primary focus:outline-none"
             />

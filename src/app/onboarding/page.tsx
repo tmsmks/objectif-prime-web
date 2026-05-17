@@ -13,8 +13,8 @@ export default function OnboardingPage() {
   );
 
   return (
-    <main className="flex flex-1 items-center justify-center px-6 py-12">
-      <div className="w-full max-w-xl rounded-2xl border border-border bg-card p-8 shadow-sm">
+    <main className="flex flex-1 items-start justify-center px-4 py-6 sm:items-center sm:px-6 sm:py-12">
+      <div className="w-full max-w-xl rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-8">
         <h1 className="text-2xl font-semibold">Bienvenue sur Objectif Prime</h1>
         <p className="mt-1 text-sm text-muted">
           Quelques infos pour personnaliser ton suivi.
@@ -34,7 +34,7 @@ export default function OnboardingPage() {
             </select>
           </Field>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Date de naissance">
               <input name="birth_date" type="date" required className={INPUT_CLS} />
             </Field>
@@ -51,7 +51,7 @@ export default function OnboardingPage() {
             </Field>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Poids actuel (kg)">
               <input
                 name="start_weight_kg"
@@ -76,7 +76,7 @@ export default function OnboardingPage() {
             </Field>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Date cible">
               <input name="target_date" type="date" required className={INPUT_CLS} />
             </Field>
