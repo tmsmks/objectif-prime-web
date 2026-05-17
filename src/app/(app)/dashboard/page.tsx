@@ -97,7 +97,7 @@ export default async function DashboardPage() {
         </div>
       </section>
 
-      <section className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <section className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <Stat label="Calories ingérées" value={`${Math.round(kcalIn)} kcal`} href="/food" />
         <Stat
           label="Calories dépensées"
@@ -142,16 +142,16 @@ function Stat({
   accent?: "good" | "bad";
 }) {
   const body = (
-    <div className="rounded-2xl border border-border bg-card p-4">
-      <p className="text-xs text-muted">{label}</p>
+    <div className="rounded-2xl border border-border bg-card p-3 sm:p-4">
+      <p className="text-[10px] text-muted sm:text-xs">{label}</p>
       <p
-        className={`mt-1 text-xl font-semibold ${
+        className={`mt-0.5 text-base font-semibold sm:mt-1 sm:text-xl ${
           accent === "good" ? "text-primary" : accent === "bad" ? "text-danger" : ""
         }`}
       >
         {value}
       </p>
-      {sub && <p className="mt-0.5 text-xs text-muted">{sub}</p>}
+      {sub && <p className="mt-0.5 text-[10px] text-muted sm:text-xs">{sub}</p>}
     </div>
   );
   return href ? <Link href={href}>{body}</Link> : body;

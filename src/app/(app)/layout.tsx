@@ -22,7 +22,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   return (
     <>
       <Nav username={profile.username} />
-      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-6">{children}</main>
+      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-4 pb-20 sm:py-6 sm:pb-6">{children}</main>
     </>
   );
 }
