@@ -10,6 +10,7 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "Objectif Prime",
   description: "Suivi de perte de poids et défi entre amis",
+  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
 };
 
 export default function RootLayout({

@@ -74,7 +74,7 @@ export function Nav({ username }: { username: string }) {
 
       {/* Mobile bottom tab bar */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-card/95 backdrop-blur sm:hidden">
-        <div className="flex justify-around px-1 py-1.5">
+        <div className="flex justify-around px-1 pb-[env(safe-area-inset-bottom)] pt-1.5">
           {TABS.map((tab) => {
             const active = pathname === tab.href || pathname.startsWith(tab.href + "/");
             return (
