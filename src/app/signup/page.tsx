@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { signup, type SignupState } from "./actions";
+import { Logo } from "@/components/Logo";
 
 export default function SignupPage() {
   const [state, formAction, pending] = useActionState<SignupState, FormData>(signup, undefined);
@@ -10,9 +11,7 @@ export default function SignupPage() {
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-12">
       <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-sm">
-        <Link href="/" className="text-xl font-bold">
-          Objectif <span className="text-primary">Prime</span>
-        </Link>
+        <Logo size="md" href="/" />
         <h1 className="mt-6 text-2xl font-semibold">Créer un compte</h1>
         <p className="mt-1 text-sm text-muted">Commence ton défi en quelques secondes.</p>
 

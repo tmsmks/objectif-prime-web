@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { Logo } from "@/components/Logo";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -27,9 +28,9 @@ export default async function Home() {
         </div>
 
         <div className="mt-8 text-center sm:mt-10">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-            Objectif <span className="text-primary">Prime</span>
-          </h1>
+          <div className="flex justify-center">
+            <Logo size="lg" />
+          </div>
           <p className="mx-auto mt-4 max-w-xl text-base text-muted sm:mt-6 sm:text-lg">
             Suivez votre perte de poids au quotidien et challengez vos amis dans des groupes
             privés. Calories, sport, pas, poids : tout au même endroit.

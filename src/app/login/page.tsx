@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useActionState } from "react";
 import { login, type AuthState } from "./actions";
+import { Logo } from "@/components/Logo";
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState<AuthState, FormData>(login, undefined);
@@ -23,9 +24,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-4 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
-          <Link href="/" className="text-xl font-bold">
-            Objectif <span className="text-primary">Prime</span>
-          </Link>
+          <Logo size="md" href="/" />
           <h1 className="mt-4 text-2xl font-semibold">Connexion</h1>
           <p className="mt-1 text-sm text-muted">Heureux de te revoir.</p>
 

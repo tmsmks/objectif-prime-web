@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { classNames } from "@/lib/utils";
+import { Logo } from "@/components/Logo";
 
 const TABS = [
   { href: "/groups", label: "Groupe", icon: "👥" },
@@ -22,9 +23,7 @@ export function Nav({ username }: { username: string }) {
       {/* Desktop header */}
       <header className="sticky top-0 z-10 hidden border-b border-border bg-card/80 backdrop-blur sm:block">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-          <Link href="/groups" className="text-lg font-bold">
-            Objectif <span className="text-primary">Prime</span>
-          </Link>
+          <Logo size="sm" href="/groups" />
           <div className="flex items-center gap-3">
             <span className="text-sm text-muted">@{username}</span>
             <form action="/api/logout" method="post">
@@ -61,9 +60,7 @@ export function Nav({ username }: { username: string }) {
       {/* Mobile top bar */}
       <header className="sticky top-0 z-10 border-b border-border bg-card/80 backdrop-blur sm:hidden">
         <div className="flex items-center justify-between px-4 py-3">
-          <Link href="/groups" className="text-lg font-bold">
-            Objectif <span className="text-primary">Prime</span>
-          </Link>
+          <Logo size="sm" href="/groups" />
           <form action="/api/logout" method="post">
             <button
               type="submit"
