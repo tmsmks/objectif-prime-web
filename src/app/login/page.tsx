@@ -19,7 +19,7 @@ export default function LoginPage() {
             width={600}
             height={300}
             priority
-            className="h-36 w-full object-cover sm:h-44"
+            className="h-auto w-full"
           />
         </div>
 

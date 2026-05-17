@@ -23,7 +23,7 @@ export default async function Home() {
             width={900}
             height={500}
             priority
-            className="h-48 w-full object-cover sm:h-72"
+            className="h-auto w-full"
           />
         </div>
 
