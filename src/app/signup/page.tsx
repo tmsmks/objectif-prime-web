@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useActionState } from "react";
 import { signup, type SignupState } from "./actions";
@@ -9,69 +10,101 @@ export default function SignupPage() {
   const [state, formAction, pending] = useActionState<SignupState, FormData>(signup, undefined);
 
   return (
-    <main className="flex flex-1 items-center justify-center px-6 py-12">
-      <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-sm">
-        <Logo size="md" href="/" />
-        <h1 className="mt-6 text-2xl font-semibold">Créer un compte</h1>
-        <p className="mt-1 text-sm text-muted">Commence ton défi en quelques secondes.</p>
+    <main className="min-h-dvh bg-zinc-950">
+      <div className="relative h-52">
+        <Image
+          src="/hero.jpg"
+          alt="L'équipe Objectif Prime"
+          fill
+          priority
+          className="object-cover object-top brightness-75"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-950" />
+      </div>
 
-        <form action={formAction} className="mt-6 space-y-4">
-          <label className="block">
-            <span className="text-sm font-medium">Pseudo</span>
-            <input
-              name="username"
-              type="text"
-              required
-              minLength={3}
-              maxLength={20}
-              autoComplete="username"
-              className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2 text-sm focus:border-primary focus:outline-none"
-            />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium">Email</span>
-            <input
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2 text-sm focus:border-primary focus:outline-none"
-            />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium">Mot de passe</span>
-            <input
-              name="password"
-              type="password"
-              required
-              minLength={6}
-              autoComplete="new-password"
-              className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2 text-sm focus:border-primary focus:outline-none"
-            />
-          </label>
+      <div className="relative -mt-10 px-6 pb-10">
+        <div className="mx-auto max-w-sm">
+          <Logo size="md" href="/" />
 
-          {state?.error && (
-            <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-danger">{state.error}</p>
-          )}
-          {state?.info && (
-            <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-primary">{state.info}</p>
-          )}
+          <h1 className="mt-6 text-3xl font-bold text-white">Créer un compte</h1>
+          <p className="mt-1 text-sm text-zinc-400">Commence ton défi en quelques secondes.</p>
 
-          <button
-            type="submit"
-            disabled={pending}
-            className="w-full rounded-full bg-primary py-2.5 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-50"
-          >
-            {pending ? "Création..." : "Créer mon compte"}
-          </button>
-        </form>
+          <form action={formAction} className="mt-8 space-y-5">
+            <div>
+              <label htmlFor="username" className="text-sm font-medium text-zinc-300">
+                Pseudo
+              </label>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                required
+                minLength={3}
+                maxLength={20}
+                autoComplete="username"
+                placeholder="ton_pseudo"
+                className="mt-2 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              />
+            </div>
 
-        <p className="mt-6 text-center text-sm text-muted">
-          Déjà un compte ?{" "}
-          <Link href="/login" className="font-medium text-primary hover:underline">
-            Se connecter
-          </Link>
-        </p>
+            <div>
+              <label htmlFor="email" className="text-sm font-medium text-zinc-300">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                placeholder="ton@email.com"
+                className="mt-2 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="password" className="text-sm font-medium text-zinc-300">
+                Mot de passe
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                minLength={6}
+                autoComplete="new-password"
+                placeholder="6 caractères min."
+                className="mt-2 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              />
+            </div>
+
+            {state?.error && (
+              <p className="rounded-xl bg-red-500/10 border border-red-500/20 px-4 py-2.5 text-sm text-red-400">
+                {state.error}
+              </p>
+            )}
+            {state?.info && (
+              <p className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 px-4 py-2.5 text-sm text-emerald-400">
+                {state.info}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={pending}
+              className="w-full rounded-xl bg-emerald-600 py-3.5 text-sm font-bold text-white hover:bg-emerald-500 active:scale-[0.98] disabled:opacity-50"
+            >
+              {pending ? "Création..." : "Créer mon compte"}
+            </button>
+          </form>
+
+          <p className="mt-8 text-center text-sm text-zinc-500">
+            Déjà un compte ?{" "}
+            <Link href="/login" className="font-semibold text-emerald-400 hover:text-emerald-300">
+              Se connecter
+            </Link>
+          </p>
+        </div>
       </div>
     </main>
   );
