@@ -4,68 +4,77 @@ import Image from "next/image";
 import Link from "next/link";
 import { useActionState } from "react";
 import { login, type AuthState } from "./actions";
-import { Logo } from "@/components/Logo";
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState<AuthState, FormData>(login, undefined);
 
   return (
-    <main className="flex flex-1 items-center justify-center px-4 py-8 sm:px-6 sm:py-12">
-      <div className="w-full max-w-sm">
-        <div className="overflow-hidden rounded-2xl">
-          <Image
-            src="/hero.jpg"
-            alt="L'équipe Objectif Prime"
-            width={600}
-            height={300}
-            priority
-            className="h-auto w-full"
-          />
+    <main className="relative flex min-h-dvh flex-col">
+      {/* Background image */}
+      <div className="relative h-[45dvh] w-full shrink-0">
+        <Image
+          src="/hero.jpg"
+          alt="L'équipe Objectif Prime"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background" />
+        <div className="absolute left-6 top-10">
+          <Link href="/" className="text-xl font-bold text-white drop-shadow-md">
+            Objectif <span className="text-emerald-300">Prime</span>
+          </Link>
         </div>
+      </div>
 
-        <div className="mt-4 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
-          <Logo size="md" href="/" />
-          <h1 className="mt-4 text-2xl font-semibold">Connexion</h1>
-          <p className="mt-1 text-sm text-muted">Heureux de te revoir.</p>
+      {/* Form card overlapping image */}
+      <div className="-mt-8 flex flex-1 flex-col px-5 pb-8">
+        <div className="w-full max-w-sm mx-auto rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5">
+          <h1 className="text-2xl font-bold text-zinc-900">Connexion</h1>
+          <p className="mt-1 text-sm text-zinc-500">Heureux de te revoir.</p>
 
-          <form action={formAction} className="mt-5 space-y-4">
-            <label className="block">
-              <span className="text-sm font-medium">Email</span>
+          <form action={formAction} className="mt-6 space-y-4">
+            <div>
+              <label htmlFor="email" className="text-sm font-medium text-zinc-700">Email</label>
               <input
+                id="email"
                 name="email"
                 type="email"
                 required
                 autoComplete="email"
-                className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                placeholder="ton@email.com"
+                className="mt-1.5 w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
               />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Mot de passe</span>
+            </div>
+            <div>
+              <label htmlFor="password" className="text-sm font-medium text-zinc-700">Mot de passe</label>
               <input
+                id="password"
                 name="password"
                 type="password"
                 required
                 autoComplete="current-password"
-                className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                placeholder="••••••"
+                className="mt-1.5 w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
               />
-            </label>
+            </div>
 
             {state?.error && (
-              <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-danger">{state.error}</p>
+              <p className="rounded-xl bg-red-50 px-4 py-2.5 text-sm text-red-600">{state.error}</p>
             )}
 
             <button
               type="submit"
               disabled={pending}
-              className="w-full rounded-full bg-primary py-2.5 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-50"
+              className="w-full rounded-xl bg-emerald-600 py-3 text-sm font-semibold text-white shadow-md shadow-emerald-600/25 hover:bg-emerald-700 active:scale-[0.98] disabled:opacity-50"
             >
               {pending ? "Connexion..." : "Se connecter"}
             </button>
           </form>
 
-          <p className="mt-5 text-center text-sm text-muted">
+          <p className="mt-5 text-center text-sm text-zinc-500">
             Pas encore inscrit ?{" "}
-            <Link href="/signup" className="font-medium text-primary hover:underline">
+            <Link href="/signup" className="font-semibold text-emerald-600 hover:underline">
               Créer un compte
             </Link>
           </p>
