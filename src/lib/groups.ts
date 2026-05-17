@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { todayISO } from "@/lib/utils";
+import { todayISO, bmr, ageFromBirthDate } from "@/lib/utils";
 
 export type UserGroup = {
   id: string;
@@ -102,7 +102,7 @@ export async function fetchGroupLeaderboard(
     await Promise.all([
       supabase
         .from("profiles")
-        .select("id, username, display_name, start_weight_kg, target_weight_kg")
+        .select("id, username, display_name, start_weight_kg, target_weight_kg, gender, birth_date, height_cm")
         .in("id", memberIds),
       supabase
         .from("weight_logs")
@@ -149,13 +149,25 @@ export async function fetchGroupLeaderboard(
       display_name: string | null;
       start_weight_kg: number | null;
       target_weight_kg: number | null;
+      gender: "male" | "female" | "other" | null;
+      birth_date: string | null;
+      height_cm: number | null;
     }>
   ).map((p) => {
     const start = p.start_weight_kg != null ? Number(p.start_weight_kg) : null;
     const target = p.target_weight_kg != null ? Number(p.target_weight_kg) : null;
     const current = latestWeight.get(p.id) ?? null;
     const kcal_in = Math.round(kcalInByUser.get(p.id) ?? 0);
-    const kcal_out = Math.round(kcalOutByUser.get(p.id) ?? 0);
+    const activityKcal = Math.round(kcalOutByUser.get(p.id) ?? 0);
+
+    const age = ageFromBirthDate(p.birth_date);
+    const weightForBmr = current ?? (start != null ? start : null);
+    const restingKcal =
+      weightForBmr != null && p.height_cm != null && age != null
+        ? bmr({ gender: p.gender, weightKg: weightForBmr, heightCm: Number(p.height_cm), ageYears: age })
+        : 0;
+    const kcal_out = activityKcal + restingKcal;
+
     const weight_lost =
       start != null && current != null ? Number((start - current).toFixed(1)) : null;
     return {
