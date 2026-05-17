@@ -4,8 +4,6 @@ import { formatDate, todayISO } from "@/lib/utils";
 import { InviteCopy } from "./InviteCopy";
 import { LeaveGroupButton } from "./LeaveGroupButton";
 
-const MEDALS = ["🥇", "🥈", "🥉"] as const;
-
 export function GroupView({
   group,
   members,
@@ -65,13 +63,12 @@ export function GroupView({
 
       {/* Member cards - daily view */}
       <section>
-        <h2 className="mb-3 text-base font-semibold sm:text-lg">Classement du jour</h2>
+        <h2 className="mb-3 text-base font-semibold sm:text-lg">Membres</h2>
         <div className="space-y-3">
-          {members.map((m, idx) => (
+          {members.map((m) => (
             <MemberDayCard
               key={m.user_id}
               member={m}
-              rank={idx + 1}
               isMe={m.user_id === currentUserId}
             />
           ))}
@@ -101,14 +98,11 @@ function MiniStat({ label, value, className }: { label: string; value: string; c
 
 function MemberDayCard({
   member,
-  rank,
   isMe,
 }: {
   member: GroupMemberStats;
-  rank: number;
   isMe: boolean;
 }) {
-  const medal = rank <= 3 ? MEDALS[rank - 1] : null;
   const weightLostText =
     member.weight_lost != null && member.weight_lost > 0
       ? `−${member.weight_lost.toFixed(1)} kg`
@@ -122,17 +116,12 @@ function MemberDayCard({
         isMe ? "border-primary/50 bg-emerald-50/40" : "border-border"
       }`}
     >
-      {/* Top row: name + rank */}
+      {/* Top row: name */}
       <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2 min-w-0">
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-xs font-bold text-zinc-600">
-            {medal ?? rank}
-          </span>
-          <p className="truncate font-semibold text-sm sm:text-base">
-            {member.display_name ?? member.username}
-            {isMe && <span className="ml-1 text-xs text-primary">(toi)</span>}
-          </p>
-        </div>
+        <p className="truncate font-semibold text-sm sm:text-base min-w-0">
+          {member.display_name ?? member.username}
+          {isMe && <span className="ml-1 text-xs text-primary">(toi)</span>}
+        </p>
         <span className="shrink-0 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary">
           {weightLostText}
         </span>

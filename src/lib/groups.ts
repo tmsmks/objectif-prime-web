@@ -186,7 +186,7 @@ export async function fetchGroupLeaderboard(
     };
   });
 
-  members.sort((a, b) => (b.weight_lost ?? -Infinity) - (a.weight_lost ?? -Infinity));
+  members.sort((a, b) => (a.display_name ?? a.username).localeCompare(b.display_name ?? b.username));
 
   return {
     group: group as GroupInfo,
