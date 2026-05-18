@@ -39,20 +39,20 @@ export function ActivityForm({ today, weightKg }: { today: string; weightKg: num
     <form ref={formRef} action={formAction} className="space-y-3">
       <label className="block">
         <span className="text-sm font-medium">Activité</span>
-        <input
+        <select
           name="activity"
-          type="text"
           required
-          list="activities"
           value={activity}
           onChange={(e) => setActivity(e.target.value)}
           className={INPUT_CLS}
-        />
-        <datalist id="activities">
+        >
+          <option value="">Choisir…</option>
           {ACTIVITIES.map((a) => (
-            <option key={a} value={a} />
+            <option key={a} value={a}>
+              {a.charAt(0).toUpperCase() + a.slice(1)}
+            </option>
           ))}
-        </datalist>
+        </select>
       </label>
       <div className="grid grid-cols-2 gap-3">
         <label className="block">
