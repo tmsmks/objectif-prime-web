@@ -51,6 +51,8 @@ const MET: Record<string, number> = {
   "football": 8,
   "tennis": 7,
   "danse": 5,
+  "padel": 8,
+  "five (foot en salle)": 9,
 };
 
 export function estimateKcalBurned(activity: string, durationMin: number, weightKg: number): number {
