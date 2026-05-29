@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { Nav } from "@/components/Nav";
 import { HealthSync } from "@/components/HealthSync";
+import { NativeReminders } from "@/components/NativeReminders";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -24,6 +25,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     <>
       <Nav username={profile.username} />
       <HealthSync />
+      <NativeReminders />
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-4 sm:py-6">{children}</main>
     </>
   );
