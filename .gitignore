@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# capacitor / ios (artefacts générés par `npx cap sync`)
+ios/App/App/public
+ios/App/App/capacitor.config.json
+ios/App/Pods
+ios/App/build
+ios/DerivedData
+DerivedData/
+*.xcuserstate
+ios/.xcode.env.local
